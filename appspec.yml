@@ -1,0 +1,40 @@
+version: 0.0
+os: linux
+files:
+  - source: /index.php
+    destination: /var/www/html/
+
+  - source: /config.php
+    destination: /var/www/html/
+  
+  - source: /add.php
+    destination: /var/www/html/
+  
+  - source: /add.php
+    destination: /var/www/html/
+
+  - source: /navbar.php
+    destination: /var/www/html/
+
+  - source: /composer.json
+    destination: /var/www/html/
+
+  - source: /assets/
+    destination: /var/www/html/
+
+  - source: /src/
+    destination: /var/www/html/
+
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
+
