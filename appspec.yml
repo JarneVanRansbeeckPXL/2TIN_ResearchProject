@@ -9,10 +9,7 @@ files:
   
   - source: /add.php
     destination: /var/www/html/
-  
-  - source: /add.php
-    destination: /var/www/html/
-
+    
   - source: /navbar.php
     destination: /var/www/html/
 
