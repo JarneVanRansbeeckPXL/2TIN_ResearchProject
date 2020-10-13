@@ -1,2 +1,12 @@
 #!/bin/bash
+
 sudo systemctl start apache2
+
+FILE=/var/www/html/vendor/autoload.php
+if test -f "$FILE"; then
+    echo "$FILE exists."
+else
+  cd /var/www/html/
+  composer install
+  cd ~
+fi
