@@ -15,6 +15,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="index.php">Home</a>
                     <a class="nav-item nav-link" href="add.php">Add employee</a>
+				    <a class="nav-item nav-link" href="lambda.php">lambda aws</a>
                 </div>
             </div>
         </nav>
@@ -49,6 +50,6 @@
         }
         ?>
     
-        <script src="assets/js/bootstrap.min.js" ></sccript>
+        <script src="assets/js/bootstrap.min.js" ></script>
     </body>
 </html>

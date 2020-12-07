@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-     <title>Awsome PXL DevOps App!</title>
+     <title>Awesome PXL DevOps App! Powered by AWS</title>
      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
      <link rel="stylesheet" href="assets/css/style.css">
     </head>
@@ -15,24 +15,27 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="index.php">Home</a>
                     <a class="nav-item nav-link" href="add.php">Add employee</a>
+					<a class="nav-item nav-link" href="lambda.php">lambda aws</a>
                 </div>
             </div>
         </nav>
         
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <?php
-        // scan the images directory for images to use in the carousel
-        // first 2 keys in the returned array are . and ..   We will need to filter those!
-        $images = scandir('assets/images');
+<?php
+    $images = array(
+     0 => "fjords.jpg",
+     1 => "lights.jpg",
+     2 => "nature.jpg",
+);
         foreach($images as $key => $image){
-            if (!in_array($image,array(".",".."))){
                 // First item needs to get the active css class. Otherwise the carousel will not show
-                echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-                echo "<img class='d-block w-100' src='assets/images/$image'/></div>";
-            }     
-        }
-    ?>
+                echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
+                echo "<img class='d-block w-100' src='https://s3imageassets.s3.amazonaws.com/$image'/></div>";
+            }   
+
+?>
+
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

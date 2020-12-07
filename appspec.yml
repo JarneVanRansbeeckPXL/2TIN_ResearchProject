@@ -12,6 +12,9 @@ files:
     
   - source: /navbar.php
     destination: /var/www/html/
+    
+  - source: /lambda.php
+    destination: /var/www/html/
 
   - source: /composer.json
     destination: /var/www/html/
@@ -23,6 +26,10 @@ files:
     destination: /var/www/html/src/
 
 hooks:
+  AfterInstall:
+    - location: scripts/composer_install
+      timeout: 300
+      runas: root
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300
