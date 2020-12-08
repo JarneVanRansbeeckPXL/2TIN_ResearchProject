@@ -4,9 +4,6 @@ files:
   - source: /index.php
     destination: /var/www/html/
 
-  - source: /config.php
-    destination: /var/www/html/
-  
   - source: /add.php
     destination: /var/www/html/
     
