@@ -1,6 +1,6 @@
 #!/bin/bash
-cd /var/www/
-cp config.php /var/www/html/config.php
+
+cp /var/www/config.php /var/www/html/config.php
 cd /var/www/html
 sudo composer install
 cd ~
