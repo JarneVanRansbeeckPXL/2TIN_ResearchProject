@@ -1,10 +1,11 @@
 #!/bin/bash
-
-sudo apt install apache2
-
 sudo apt update
 
-sudo apt install php php-cli
+sudo apt install apache2 -y
+
+sudo apt install mysql-server
+
+sudo apt install php php-cli -y
 
 curl -sS https://getcomposer.org/installer | php
 
