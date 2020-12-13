@@ -30,7 +30,6 @@ USE `employees`;
 -- Tabelstructuur voor tabel `employees`
 --
 
-DROP TABLE IF EXISTS `employees`;
 CREATE TABLE `employees` (
   `emp_no` int(11) NOT NULL,
   `first_name` varchar(120) NOT NULL,
