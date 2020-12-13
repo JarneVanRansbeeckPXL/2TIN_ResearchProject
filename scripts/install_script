@@ -3,7 +3,7 @@
 cp /var/www/config.php /var/www/html/config.php
 cd /var/www/html/
 sudo composer install
-chmod +x sqlscript.sh
 cd /var/www/
+chmod +x sqlscript.sh
 ./sqlscript.sh
 cd ~

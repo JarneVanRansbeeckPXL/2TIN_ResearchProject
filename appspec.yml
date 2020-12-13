@@ -16,6 +16,9 @@ files:
   - source: /composer.json
     destination: /var/www/html/
 
+  - source: /employees.sql
+    destination: /var/www/html/
+
   - source: /assets/
     destination: /var/www/html/assets/
 
