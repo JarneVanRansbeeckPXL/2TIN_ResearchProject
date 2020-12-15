@@ -31,7 +31,7 @@
   if (isset($_POST['submit'])) {
     $example = $_POST['example'];
     $example2 = $_POST['example2'];
-	echo "<a href='http://s3imageassets.s3-website-us-east-1.amazonaws.com/$example/$example2' target=_blank>" . $example . $example2 . "</a>";
+	echo "<a href='http://s3resizer-cloud-cloudperesizebucket.s3-website-us-east-1.amazonaws.com/$example/$example2' target=_blank>" . $example . $example2 . "</a>";
   };
 ?>
 		

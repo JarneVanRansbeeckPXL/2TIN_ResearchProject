@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-     <title>Awsome PXL DevOps App!</title>
+     <title>Awesome PXL DevOps App! Powered by AWS</title>
      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
      <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">PXL DevOps App</a>
+            <a class="navbar-brand" href="#">PXL DevOps App Test</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -15,24 +15,41 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="index.php">Home</a>
                     <a class="nav-item nav-link" href="add.php">Add employee</a>
+					<a class="nav-item nav-link" href="lambda.php">lambda aws</a>
                 </div>
             </div>
         </nav>
         
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <?php
-        // scan the images directory for images to use in the carousel
-        // first 2 keys in the returned array are . and ..   We will need to filter those!
-        $images = scandir('assets/images');
-        foreach($images as $key => $image){
-            if (!in_array($image,array(".",".."))){
-                // First item needs to get the active css class. Otherwise the carousel will not show
-                echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-                echo "<img class='d-block w-100' src='assets/images/$image'/></div>";
-            }     
-        }
-    ?>
+<?php
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
+
+$bucket = 's3resizer-cloud-cloudperesizebucket';
+
+// Instantiate the client.
+$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => 'us-east-1'
+]);
+
+try {
+    $objects = $s3->listObjects([
+        'Bucket' => $bucket
+    ]);
+    foreach ($objects  as $key => $image) {
+        echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
+        echo "<img class='d-block w-100' src='https://s3imageassets.s3.amazonaws.com/$image'/></div>";
+    }
+} catch (S3Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+
+
+?>
+
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
