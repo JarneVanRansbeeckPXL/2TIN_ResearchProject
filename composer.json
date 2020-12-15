@@ -5,7 +5,8 @@
         ]
     },
     "require-dev": {
-        "phpunit/phpunit": "9"
-	"aws/aws-sdk-php": "2.*"
+        "phpunit/phpunit": "9",
+        "aws/aws-sdk-php": "*",
+        "amazonwebservices/aws-sdk-for-php": "*"
     }
 }
