@@ -22,31 +22,23 @@
         
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-<?php
+  
+  <?php
+    require('vendor/autoload.php');
+    require_once('client.php');
 
-use Aws\S3\S3Client;
-use Aws\S3\Exception\S3Exception;
+    try {
+        $objects = $s3->listObjects([
+            'Bucket' => $bucket
+        ]);
 
-$bucket = 's3resizer-cloud-cloudperesizebucket';
-
-// Instantiate the client.
-$s3 = new S3Client([
-    'version' => 'latest',
-    'region'  => 'us-east-1'
-]);
-
-try {
-    $objects = $s3->listObjects([
-        'Bucket' => $bucket
-    ]);
-    foreach ($objects  as $key => $image) {
-        echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-        echo "<img class='d-block w-100' src='https://s3imageassets.s3.amazonaws.com/$image'/></div>";
+        foreach ($objects['Contents']  as $object) {
+            echo ($object['Key'] == 'fjords.jpg') ? '<div class="carousel-item active">' : '<div class="carousel-item">';
+            echo '<img class="d-block w-100" src="https://s3resizer-cloud-cloudperesizebucket.s3.amazonaws.com/'.$object['Key'].'"/></div>';
+        }
+    } catch (S3Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
     }
-} catch (S3Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
-
 
 ?>
 
